@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SK Furniture - Premium Luxury Furniture. Discover handcrafted sofas, beds, dining sets, and more. Uncompromising quality and elegant design by Santosh Kumar Roy.">
+    <meta name="keywords" content="luxury furniture, premium furniture, SK Furniture, sofas, beds, dining tables, wooden furniture, home decor, Santosh Kumar Roy">
+    <title>SK Furniture | Premium Luxury Furniture | Handcrafted Excellence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #080808;
+            --bg-secondary: #0d0d0d;
+            --bg-card: #141414;
+            --bg-card-hover: #1a1a1a;
+            --bg-surface: #1c1c1c;
+            --bg-nav: rgba(10, 10, 10, 0.92);
+            --gold: #c9a96e;
+            --gold-light: #d4b87a;
+            --gold-dark: #a88a4a;
+            --gold-pale: #e0cda0;
+            --text-primary: #f0ede6;
+            --text-secondary: #b8b5ae;
+            --text-muted: #8a8780;
+            --text-dark: #5a5752;
+            --white: #ffffff;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-gold: rgba(201, 169, 110, 0.25);
+            --border-gold-hover: rgba(201, 169, 110, 0.5);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
+            --shadow-gold: 0 4px 24px rgba(201, 169, 110, 0.12);
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: #333 #0a0a0a;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+        }
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: #080808;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            opacity: 1;
+            visibility: visible;
+        }
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-logo {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 4px;
+            animation: loaderPulse 1.5s ease-in-out infinite;
+        }
+        .loader-line {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin-top: 16px;
+            animation: loaderLine 1.5s ease-in-out infinite;
+            border-radius: 1px;
+        }
+        @keyframes loaderPulse {
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: scale(0.97);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.03);
+            }
+        }
+        @keyframes loaderLine {
+            0%,
+            100% {
+                width: 40px;
+                opacity: 0.4;
+            }
+            50% {
+                width: 80px;
+                opacity: 1;
+            }
+        }
+
+        /* Navbar */
+        #navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 18px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all var(--transition-smooth);
+            background: transparent;
+        }
+        #navbar.scrolled {
+            background: var(--bg-nav);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 10px 40px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .nav-brand {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+            white-space: nowrap;
+        }
+        .nav-brand span {
+            color: var(--gold);
+        }
+        #navbar.scrolled .nav-brand {
+            font-size: 1.5rem;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color var(--transition-fast);
+            position: relative;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold-light);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--gold);
+            transition: width var(--transition-smooth);
+            border-radius: 1px;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .nav-icon-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            position: relative;
+            transition: color var(--transition-fast);
+            padding: 6px;
+        }
+        .nav-icon-btn:hover {
+            color: var(--gold-light);
+        }
+        .nav-badge {
+            position: absolute;
+            top: -4px;
+            right: -8px;
+            background: var(--gold);
+            color: #000;
+            font-size: 0.65rem;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform var(--transition-fast);
+            line-height: 1;
+        }
+        .nav-badge:empty {
+            display: none;
+        }
+        .nav-badge.pop {
+            animation: badgePop 0.4s ease;
+        }
+        @keyframes badgePop {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.4);
+            }
+        }
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 8px;
+            z-index: 1001;
+        }
+        .hamburger span {
+            width: 26px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all var(--transition-smooth);
+            border-radius: 2px;
+        }
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Hero Section */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #0a0a0a;
+        }
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            z-index: 0;
+        }
+        .hero-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        .hero-slide-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.35);
+            transform: scale(1.05);
+            transition: transform 8s ease;
+        }
+        .hero-slide.active .hero-slide-bg {
+            transform: scale(1);
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(8, 8, 8, 0.3) 0%, rgba(8, 8, 8, 0.7) 60%, rgba(8, 8, 8, 0.95) 100%);
+            z-index: 2;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 30px;
+        }
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid var(--border-gold);
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        .hero-title span {
+            color: var(--gold);
+            font-style: italic;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 36px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            border: none;
+            font-family: var(--font-body);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: var(--gold);
+            color: #080808;
+            box-shadow: var(--shadow-gold);
+        }
+        .btn-primary:hover {
+            background: var(--gold-light);
+            box-shadow: 0 8px 32px rgba(201, 169, 110, 0.25);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+        }
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold-light);
+            background: rgba(201, 169, 110, 0.05);
+            transform: translateY(-2px);
+        }
+        .btn-sm {
+            padding: 10px 20px;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+        }
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 36px;
+        }
+        .btn-whatsapp {
+            background: #25D366;
+            color: #fff;
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.3);
+            animation: floatBtn 3s ease-in-out infinite;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+            transition: all var(--transition-smooth);
+        }
+        .btn-whatsapp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.45);
+        }
+        @keyframes floatBtn {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+        .hero-indicators {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            display: flex;
+            gap: 10px;
+        }
+        .hero-indicator {
+            width: 10px;
+            height: 3px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.35);
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            border: none;
+            padding: 0;
+        }
+        .hero-indicator.active {
+            width: 28px;
+            background: var(--gold);
+            box-shadow: 0 0 12px rgba(201, 169, 110, 0.5);
+        }
+
+        /* Sections */
+        .section {
+            padding: 90px 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .section-tag {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        /* Category Strip */
+        .category-strip {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+        .category-chip {
+            padding: 10px 22px;
+            border-radius: 50px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: all var(--transition-smooth);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .category-chip:hover,
+        .category-chip.active {
+            border-color: var(--gold);
+            color: var(--gold-light);
+            background: rgba(201, 169, 110, 0.06);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .product-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+            group: true;
+        }
+        .product-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-gold);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+        .product-card-image {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+        .product-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        .product-card:hover .product-card-image img {
+            transform: scale(1.08);
+        }
+        .product-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            z-index: 2;
+            text-transform: uppercase;
+        }
+        .badge-best {
+            background: #1a1a1a;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+        .badge-new {
+            background: #fff;
+            color: #000;
+        }
+        .badge-limited {
+            background: #c0392b;
+            color: #fff;
+        }
+        .badge-premium {
+            background: var(--gold);
+            color: #000;
+        }
+        .product-wishlist-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(6px);
+        }
+        .product-wishlist-btn:hover {
+            background: rgba(200, 50, 50, 0.6);
+            transform: scale(1.1);
+        }
+        .product-wishlist-btn.liked {
+            color: #e74c3c;
+            background: rgba(200, 50, 50, 0.3);
+            animation: heartBeat 0.5s ease;
+        }
+        @keyframes heartBeat {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            30% {
+                transform: scale(1.35);
+            }
+            60% {
+                transform: scale(0.9);
+            }
+        }
+        .product-card-body {
+            padding: 18px 20px 22px;
+        }
+        .product-card-category {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .product-card-name {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+            letter-spacing: 0.3px;
+        }
+        .product-card-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            margin-bottom: 4px;
+        }
+        .product-card-rating {
+            font-size: 0.8rem;
+            color: #f0c040;
+            margin-bottom: 8px;
+        }
+        .product-card-rating span {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            margin-left: 4px;
+        }
+        .product-card-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .product-card-actions .btn {
+            flex: 1;
+            text-align: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            padding: 10px 14px;
+            min-width: auto;
+        }
+        .btn-add-cart {
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+        }
+        .btn-add-cart:hover {
+            background: #2a2a2a;
+            border-color: var(--gold);
+            color: var(--gold-light);
+        }
+        .btn-buy-now {
+            background: var(--gold);
+            color: #000;
+            border: none;
+        }
+        .btn-buy-now:hover {
+            background: var(--gold-light);
+        }
+
+        /* Product Detail Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 5000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-smooth);
+            padding: 20px;
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(30px);
+            transition: transform var(--transition-smooth);
+        }
+        .modal-overlay.open .modal {
+            transform: translateY(0);
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: var(--bg-surface);
+            border: none;
+            color: var(--text-primary);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            z-index: 10;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-close:hover {
+            background: #333;
+            color: #fff;
+        }
+        .modal-product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        .modal-product-image {
+            aspect-ratio: 1;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+        .modal-product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .modal-product-info h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        .modal-product-info .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            margin-bottom: 12px;
+        }
+        .modal-product-info .rating {
+            color: #f0c040;
+            margin-bottom: 12px;
+        }
+        .modal-product-info .desc {
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+        .modal-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .modal-meta strong {
+            color: var(--text-primary);
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* Cart & Wishlist Side Panels */
+        .side-panel {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 420px;
+            max-width: 90vw;
+            height: 100vh;
+            z-index: 6000;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border-subtle);
+            transition: right var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-lg);
+        }
+        .side-panel.open {
+            right: 0;
+        }
+        .side-panel-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .side-panel-header h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--white);
+        }
+        .side-panel-close {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 6px;
+            transition: color var(--transition-fast);
+        }
+        .side-panel-close:hover {
+            color: #e74c3c;
+        }
+        .side-panel-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 24px;
+        }
+        .side-panel-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+        .cart-item {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            align-items: center;
+        }
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #1a1a1a;
+        }
+        .cart-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .cart-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .cart-item-info h4 {
+            font-size: 0.9rem;
+            color: var(--white);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .cart-item-info .price {
+            color: var(--gold-light);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .cart-item-qty button {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cart-item-qty button:hover {
+            border-color: var(--gold);
+            color: var(--gold-light);
+        }
+        .cart-item-qty span {
+            font-weight: 600;
+            min-width: 24px;
+            text-align: center;
+            color: var(--white);
+        }
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: color var(--transition-fast);
+            padding: 4px;
+        }
+        .cart-item-remove:hover {
+            color: #e74c3c;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+        .empty-state i {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 16px;
+            color: #333;
+        }
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1a1a1a;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            z-index: 8000;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-gold);
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-smooth);
+            letter-spacing: 0.5px;
+            pointer-events: none;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Why Choose Us */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            text-align: center;
+            border: 1px solid var(--border-subtle);
+            transition: all var(--transition-smooth);
+        }
+        .feature-card:hover {
+            border-color: var(--border-gold);
+            box-shadow: var(--shadow-gold);
+            transform: translateY(-4px);
+        }
+        .feature-card i {
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+        .feature-card h4 {
+            font-family: var(--font-display);
+            color: var(--white);
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+        }
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Testimonials */
+        .testimonial-slider {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .testimonial-slider::-webkit-scrollbar {
+            display: none;
+        }
+        .testimonial-card {
+            min-width: 340px;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            border: 1px solid var(--border-subtle);
+            scroll-snap-align: start;
+            flex-shrink: 0;
+        }
+        .testimonial-card .stars {
+            color: #f0c040;
+            margin-bottom: 10px;
+        }
+        .testimonial-card p {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .testimonial-card .author {
+            font-weight: 600;
+            color: var(--white);
+            font-size: 0.9rem;
+        }
+
+        /* Instagram Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .gallery-item {
+            aspect-ratio: 1;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: #1a1a1a;
+            cursor: pointer;
+            position: relative;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+        }
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .contact-info h4 {
+            font-family: var(--font-display);
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+        .contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .contact-info i {
+            color: var(--gold);
+            margin-right: 8px;
+            width: 18px;
+            text-align: center;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            margin-bottom: 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            transition: border-color var(--transition-fast);
+            resize: vertical;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.06);
+        }
+        .contact-form textarea {
+            min-height: 120px;
+        }
+
+        /* Footer */
+        #footer {
+            background: #050505;
+            padding: 50px 40px 30px;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+        #footer .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--white);
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+        #footer .footer-brand span {
+            color: var(--gold);
+        }
+        #footer .footer-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+            list-style: none;
+        }
+        #footer .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: color var(--transition-fast);
+        }
+        #footer .footer-links a:hover {
+            color: var(--gold-light);
+        }
+        #footer .footer-credit {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            margin-top: 16px;
+            letter-spacing: 0.5px;
+        }
+        #footer .social-icons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            margin: 16px 0;
+        }
+        #footer .social-icons a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: color var(--transition-fast);
+        }
+        #footer .social-icons a:hover {
+            color: var(--gold-light);
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Search & Filter Bar */
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+            align-items: center;
+        }
+        .filter-bar input,
+        .filter-bar select {
+            padding: 12px 18px;
+            border-radius: 50px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            transition: border-color var(--transition-fast);
+            min-width: 180px;
+        }
+        .filter-bar input:focus,
+        .filter-bar select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        .filter-bar input {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        /* Checkout Form */
+        .checkout-form input,
+        .checkout-form textarea,
+        .checkout-form select {
+            width: 100%;
+            padding: 14px 18px;
+            margin-bottom: 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            transition: border-color var(--transition-fast);
+        }
+        .checkout-form input:focus,
+        .checkout-form textarea:focus,
+        .checkout-form select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        @media (max-width: 900px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            .section {
+                padding: 60px 20px;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 280px;
+                height: 100vh;
+                background: var(--bg-nav);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 80px 30px;
+                gap: 20px;
+                z-index: 999;
+                box-shadow: var(--shadow-lg);
+                border-left: 1px solid var(--border-subtle);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            #navbar {
+                padding: 14px 20px;
+            }
+            #navbar.scrolled {
+                padding: 10px 20px;
+            }
+            .modal-product-layout {
+                grid-template-columns: 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 16px;
+            }
+            .side-panel {
+                width: 100%;
+                max-width: 100vw;
+                right: -100vw;
+            }
+            .btn-whatsapp {
+                bottom: 16px;
+                right: 16px;
+                width: 48px;
+                height: 48px;
+                font-size: 1.3rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .hero-tag {
+                font-size: 0.65rem;
+                letter-spacing: 2px;
+                padding: 6px 14px;
+            }
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.8rem;
+            }
+            .product-card-actions .btn {
+                padding: 8px 10px;
+                font-size: 0.7rem;
+            }
+            .category-chip {
+                padding: 8px 14px;
+                font-size: 0.7rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .modal {
+                padding: 20px;
+                border-radius: var(--radius-lg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader-logo">SK<span>.</span></div>
+        <div class="loader-line"></div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Navbar -->
+    <nav id="navbar">
+        <a href="#hero" class="nav-brand">SK<span>.</span> Furniture</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hero" class="active" data-nav>Home</a></li>
+            <li><a href="#shop" data-nav>Shop</a></li>
+            <li><a href="#categories" data-nav>Categories</a></li>
+            <li><a href="#features" data-nav>Why Us</a></li>
+            <li><a href="#testimonials" data-nav>Reviews</a></li>
+            <li><a href="#contact" data-nav>Contact</a></li>
+        </ul>
+        <div class="nav-icons">
+            <button class="nav-icon-btn" id="wishlistNavBtn" aria-label="Wishlist" onclick="openWishlist()">
+                <i class="fa-regular fa-heart"></i>
+                <span class="nav-badge" id="wishlistBadge"></span>
+            </button>
+            <button class="nav-icon-btn" id="cartNavBtn" aria-label="Cart" onclick="openCart()">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="nav-badge" id="cartBadge"></span>
+            </button>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919818216443?text=Hello%2C%20I%27m%20interested%20in%20SK%20Furniture%20products.%20Please%20share%20details." target="_blank" class="btn-whatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Cart Side Panel -->
+    <div class="side-panel" id="cartPanel">
+        <div class="side-panel-header">
+            <h3>Your Cart</h3>
+            <button class="side-panel-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="side-panel-body" id="cartItemsContainer"></div>
+        <div class="side-panel-footer" id="cartFooter"></div>
+    </div>
+
+    <!-- Wishlist Side Panel -->
+    <div class="side-panel" id="wishlistPanel">
+        <div class="side-panel-header">
+            <h3>Your Wishlist</h3>
+            <button class="side-panel-close" onclick="closeWishlist()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="side-panel-body" id="wishlistItemsContainer"></div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal" id="productModalContent"></div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal" id="checkoutModalContent"></div>
+    </div>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="hero">
+        <div class="hero-slide active" data-slide="0">
+            <div class="hero-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1600&q=80');"></div>
+        </div>
+        <div class="hero-slide" data-slide="1">
+            <div class="hero-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1600&q=80');"></div>
+        </div>
+        <div class="hero-slide" data-slide="2">
+            <div class="hero-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1600&q=80');"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-tag">✦ Premium Collection 2025</div>
+            <h1 class="hero-title">Crafted for <span>Elegance</span></h1>
+            <p class="hero-subtitle">Experience the finest handcrafted furniture that transforms your living spaces into timeless masterpieces.</p>
+            <div class="hero-btns">
+                <a href="#shop" class="btn btn-primary">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#categories" class="btn btn-outline">View Collection</a>
+            </div>
+        </div>
+        <div class="hero-indicators">
+            <button class="hero-indicator active" data-slide="0"></button>
+            <button class="hero-indicator" data-slide="1"></button>
+            <button class="hero-indicator" data-slide="2"></button>
+        </div>
+    </section>
+
+    <!-- ==================== CATEGORY STRIP ==================== -->
+    <section id="categories" class="section" style="padding-top:50px;padding-bottom:30px;">
+        <div class="section-header reveal">
+            <div class="section-tag">Browse</div>
+            <h2 class="section-title">Shop by Category</h2>
+            <p class="section-subtitle">Curated collections for every room</p>
+        </div>
+        <div class="category-strip reveal" id="categoryStrip">
+            <button class="category-chip active" data-cat="all">All</button>
+            <button class="category-chip" data-cat="Sofa">Sofas</button>
+            <button class="category-chip" data-cat="Bed">Beds</button>
+            <button class="category-chip" data-cat="Chair">Chairs</button>
+            <button class="category-chip" data-cat="Dining Table">Dining Tables</button>
+            <button class="category-chip" data-cat="Dining Set">Dining Sets</button>
+            <button class="category-chip" data-cat="Coffee Table">Coffee Tables</button>
+            <button class="category-chip" data-cat="Wardrobe">Wardrobes</button>
+            <button class="category-chip" data-cat="Office Desk">Office Desks</button>
+            <button class="category-chip" data-cat="Storage Unit">Storage</button>
+        </div>
+    </section>
+
+    <!-- ==================== SHOP / PRODUCTS SECTION ==================== -->
+    <section id="shop" class="section" style="padding-top:20px;">
+        <div class="section-header reveal">
+            <div class="section-tag">Our Collection</div>
+            <h2 class="section-title">Premium Furniture</h2>
+            <p class="section-subtitle">Discover pieces that define luxury living</p>
+        </div>
+        <div class="filter-bar reveal">
+            <input type="text" id="searchInput" placeholder="Search furniture..." oninput="renderProducts()">
+            <select id="sortSelect" onchange="renderProducts()">
+                <option value="default">Sort: Featured</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="rating">Top Rated</option>
+            </select>
+            <select id="priceFilter" onchange="renderProducts()">
+                <option value="all">All Prices</option>
+                <option value="0-15000">₹5,999 – ₹15,000</option>
+                <option value="15000-35000">₹15,000 – ₹35,000</option>
+                <option value="35000-60000">₹35,000 – ₹60,000</option>
+                <option value="60000-100000">₹60,000+</option>
+            </select>
+        </div>
+        <div class="product-grid reveal" id="productGrid"></div>
+    </section>
+
+    <!-- ==================== FEATURES / WHY CHOOSE US ==================== -->
+    <section id="features" class="section">
+        <div class="section-header reveal">
+            <div class="section-tag">Why SK Furniture</div>
+            <h2 class="section-title">The Difference Is in the Detail</h2>
+            <p class="section-subtitle">Uncompromising quality at every step</p>
+        </div>
+        <div class="features-grid reveal">
+            <div class="feature-card">
+                <i class="fa-solid fa-medal"></i>
+                <h4>Premium Materials</h4>
+                <p>Solid hardwoods, top-grain leather, and artisan fabrics sourced globally.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h4>Free Delivery</h4>
+                <p>Complimentary white-glove delivery across India for orders above ₹25,000.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h4>5-Year Warranty</h4>
+                <p>Every piece is backed by our comprehensive warranty and support.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+                <h4>Handcrafted</h4>
+                <p>Each item is meticulously crafted by skilled artisans with decades of experience.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-rotate-left"></i>
+                <h4>Easy Returns</h4>
+                <p>30-day hassle-free return policy. Your satisfaction is guaranteed.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+                <h4>COD Available</h4>
+                <p>Cash on delivery available on all orders. Pay only when you receive.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TESTIMONIALS ==================== -->
+    <section id="testimonials" class="section">
+        <div class="section-header reveal">
+            <div class="section-tag">Testimonials</div>
+            <h2 class="section-title">Loved by Our Clients</h2>
+            <p class="section-subtitle">Real experiences from real homes</p>
+        </div>
+        <div class="testimonial-slider reveal">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"The Royal Velvet Sofa transformed our living room. The craftsmanship is impeccable and the comfort is unmatched. Truly luxury at its finest."</p>
+                <div class="author">— Priya Sharma, Mumbai</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Ordered the Elite Comfort Bed and it exceeded all expectations. The delivery was seamless and the white-glove service made the experience extraordinary."</p>
+                <div class="author">— Rajesh Mehta, Delhi</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"The Nordic Oak Dining Table is a masterpiece. Every dinner guest asks where we got it. SK Furniture is now our go-to for all home needs."</p>
+                <div class="author">— Ananya Patel, Bangalore</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"From browsing to delivery, the experience was premium. The Heritage Recliner is my favorite spot in the house. Worth every rupee."</p>
+                <div class="author">— Vikram Joshi, Pune</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GALLERY ==================== -->
+    <section id="gallery" class="section">
+        <div class="section-header reveal">
+            <div class="section-tag">Gallery</div>
+            <h2 class="section-title">Inspiration Corner</h2>
+            <p class="section-subtitle">See our pieces in beautifully designed spaces</p>
+        </div>
+        <div class="gallery-grid reveal">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=80" alt="Luxury living room" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=400&q=80" alt="Modern bedroom" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1617104551722-3b2d51366400?w=400&q=80" alt="Dining area" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1598928506311-c55e85a1e3c2?w=400&q=80" alt="Study room" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80" alt="Luxury interior" loading="lazy"></div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section id="contact" class="section">
+        <div class="section-header reveal">
+            <div class="section-tag">Get in Touch</div>
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-subtitle">We'd love to hear from you</p>
+        </div>
+        <div class="contact-grid reveal">
+            <div class="contact-info">
+                <h4>SK Furniture</h4>
+                <p><i class="fa-solid fa-user"></i> <strong>Owner:</strong> Santosh Kumar Roy</p>
+                <p><i class="fa-solid fa-phone"></i> <strong>Phone:</strong> <a href="tel:+919818216443" style="color:var(--gold-light);text-decoration:none;">+91 9818216443</a></p>
+                <p><i class="fa-brands fa-whatsapp"></i> <strong>WhatsApp:</strong> <a href="https://wa.me/919818216443" target="_blank" style="color:var(--gold-light);text-decoration:none;">Chat Now</a></p>
+                <p style="margin-top:16px;color:var(--text-muted);font-size:0.85rem;">
+                    <i class="fa-solid fa-clock"></i> <strong>Business Hours:</strong><br>
+                    Monday – Saturday: 10:00 AM – 8:00 PM<br>
+                    Sunday: 11:00 AM – 6:00 PM
+                </p>
+                <p style="margin-top:8px;color:var(--text-muted);font-size:0.8rem;">
+                    <i class="fa-solid fa-truck"></i> Free Delivery | COD Available | 5-Year Warranty
+                </p>
+            </div>
+            <form class="contact-form" onsubmit="handleContactSubmit(event)">
+                <input type="text" placeholder="Your Name" required>
+                <input type="tel" placeholder="Mobile Number" required>
+                <input type="email" placeholder="Email Address">
+                <textarea placeholder="Your Message..." required></textarea>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer id="footer">
+        <div class="footer-brand">SK<span>.</span> Furniture</div>
+        <p style="color:var(--text-muted);font-size:0.9rem;">Premium Luxury Furniture — Crafted for Elegance</p>
+        <div class="social-icons">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+            <a href="https://wa.me/919818216443" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <ul class="footer-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#features">Why Us</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p style="color:var(--text-muted);font-size:0.8rem;">Owner: <strong>Santosh Kumar Roy</strong> | Phone: <strong>9818216443</strong></p>
+        <p class="footer-credit">Developed by <strong>Ghanshay Roy</strong> | &copy; 2025 SK Furniture. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // ==================== PRODUCT DATA ====================
+        const products = [
+            { id: 1, name: 'Royal Velvet Sofa', category: 'Sofa', price: 65999, rating: 4.9, badge: 'best',
+                desc: 'Luxurious 3-seater velvet sofa with gold-finished legs. Deep button tufting and plush cushioning for the ultimate comfort experience.',
+                material: 'Premium Velvet, Solid Oak Frame', warranty: '5 Years', image: 'sofa,luxury,velvet' },
+            { id: 2, name: 'Nordic Oak Dining Table', category: 'Dining Table', price: 42999, rating: 4.8, badge: 'premium',
+                desc: 'Scandinavian-inspired solid oak dining table. Seats 6 comfortably with a smooth natural finish.',
+                material: 'Solid Nordic Oak', warranty: '5 Years', image: 'dining-table,oak,modern' },
+            { id: 3, name: 'Elite Comfort Bed', category: 'Bed', price: 78999, rating: 4.9, badge: 'best',
+                desc: 'King-size bed with a luxurious upholstered headboard. Engineered for superior comfort and lasting durability.',
+                material: 'Solid Walnut, Premium Fabric', warranty: '5 Years', image: 'bed,luxury,king' },
+            { id: 4, name: 'Heritage Recliner Chair', category: 'Chair', price: 34999, rating: 4.7, badge: 'limited',
+                desc: 'Classic recliner with genuine leather upholstery. Multiple reclining positions and built-in footrest.',
+                material: 'Genuine Leather, Steel Frame', warranty: '3 Years', image: 'recliner,chair,leather' },
+            { id: 5, name: 'Prestige Study Desk', category: 'Office Desk', price: 28999, rating: 4.6, badge: 'new',
+                desc: 'Elegant study desk with spacious work surface and discreet storage drawers. Perfect for home offices.',
+                material: 'Engineered Wood, Metal Accents', warranty: '3 Years', image: 'desk,office,wooden' },
+            { id: 6, name: 'Classic Walnut Wardrobe', category: 'Wardrobe', price: 55999, rating: 4.8, badge: 'premium',
+                desc: 'Spacious 3-door wardrobe with full-length mirror. Premium walnut veneer with soft-close hinges.',
+                material: 'Walnut Veneer, Solid Wood Frame', warranty: '5 Years', image: 'wardrobe,walnut,closet' },
+            { id: 7, name: 'Marble Top Coffee Table', category: 'Coffee Table', price: 25999, rating: 4.7, badge: 'best',
+                desc: 'Stunning coffee table with genuine Italian marble top and brushed gold legs. A true centerpiece.',
+                material: 'Italian Marble, Stainless Steel', warranty: '3 Years', image: 'coffee-table,marble,luxury' },
+            { id: 8, name: 'Grand Dining Set 6-Seater', category: 'Dining Set', price: 74999, rating: 4.9, badge: 'premium',
+                desc: 'Complete 6-seater dining set with a solid wood table and upholstered chairs. Perfect for family gatherings.',
+                material: 'Solid Mahogany, Fabric Upholstery', warranty: '5 Years', image: 'dining-set,wood,6-seater' },
+            { id: 9, name: 'Ergo Study Chair', category: 'Study Chair', price: 15999, rating: 4.5, badge: 'new',
+                desc: 'Ergonomic study chair with lumbar support and adjustable height. Designed for long working hours.',
+                material: 'Mesh, Foam, Metal Base', warranty: '2 Years', image: 'office-chair,ergonomic,mesh' },
+            { id: 10, name: 'Artisan Console Table', category: 'Console Table', price: 18999, rating: 4.6, badge: 'new',
+                desc: 'Slim console table with intricate carved details. Ideal for entryways and hallways.',
+                material: 'Solid Mango Wood', warranty: '3 Years', image: 'console-table,wood,carved' },
+            { id: 11, name: 'Plush Accent Chair', category: 'Accent Chair', price: 22999, rating: 4.7, badge: 'limited',
+                desc: 'Statement accent chair with curved backrest and velvet upholstery. Adds a pop of elegance to any room.',
+                material: 'Velvet, Solid Beech Frame', warranty: '3 Years', image: 'accent-chair,velvet,designer' },
+            { id: 12, name: 'Chesterfield Leather Sofa', category: 'Sofa', price: 79999, rating: 4.9, badge: 'premium',
+                desc: 'Iconic Chesterfield design in genuine top-grain leather. Deep buttoning and rolled arms for timeless appeal.',
+                material: 'Top-Grain Leather, Hardwood Frame', warranty: '5 Years', image: 'chesterfield,sofa,leather' },
+            { id: 13, name: 'Minimalist Platform Bed', category: 'Bed', price: 45999, rating: 4.6, badge: 'new',
+                desc: 'Low-profile platform bed with integrated nightstands. Modern minimal design for contemporary bedrooms.',
+                material: 'Solid Ash Wood', warranty: '5 Years', image: 'platform-bed,minimal,modern' },
+            { id: 14, name: 'Executive Office Desk', category: 'Office Desk', price: 38999, rating: 4.7, badge: 'best',
+                desc: 'Large executive desk with cable management and premium finish. Commands respect in any office.',
+                material: 'Solid Oak, Leather Desktop', warranty: '5 Years', image: 'executive-desk,office,premium' },
+            { id: 15, name: 'Round Glass Dining Table', category: 'Dining Table', price: 32999, rating: 4.5, badge: 'new',
+                desc: 'Elegant round dining table with tempered glass top and sculptural metal base. Seats 4-5.',
+                material: 'Tempered Glass, Powder-Coated Metal', warranty: '3 Years', image: 'glass-table,dining,round' },
+            { id: 16, name: 'Velvet Storage Ottoman', category: 'Storage Unit', price: 11999, rating: 4.4, badge: 'limited',
+                desc: 'Multifunctional storage ottoman with plush velvet top. Hidden storage compartment inside.',
+                material: 'Velvet, Engineered Wood', warranty: '2 Years', image: 'ottoman,storage,velvet' },
+            { id: 17, name: 'Bookshelf Storage Unit', category: 'Storage Unit', price: 21999, rating: 4.6, badge: 'best',
+                desc: 'Open shelving unit with 5 spacious tiers. Perfect for books, decor, and collectibles.',
+                material: 'Solid Pine Wood', warranty: '3 Years', image: 'bookshelf,storage,wooden' },
+            { id: 18, name: 'Luxe Wingback Chair', category: 'Accent Chair', price: 27999, rating: 4.8, badge: 'premium',
+                desc: 'Classic wingback chair reimagined with modern lines. Upholstered in premium linen blend.',
+                material: 'Linen Blend, Solid Birch Frame', warranty: '3 Years', image: 'wingback,chair,classic' },
+            { id: 19, name: 'Rustic Console Table', category: 'Console Table', price: 16999, rating: 4.5, badge: 'new',
+                desc: 'Rustic charm meets modern design. Reclaimed wood console with iron hairpin legs.',
+                material: 'Reclaimed Wood, Iron', warranty: '3 Years', image: 'rustic,console,reclaimed-wood' },
+            { id: 20, name: 'Grand King Bed', category: 'Bed', price: 69999, rating: 4.8, badge: 'best',
+                desc: 'Oversized king bed with tufted headboard and premium fabric. Cloud-like comfort guaranteed.',
+                material: 'Solid Wood, Premium Upholstery', warranty: '5 Years', image: 'king-bed,tufted,luxury' },
+            { id: 21, name: 'Modular L-Shape Sofa', category: 'Sofa', price: 59999, rating: 4.7, badge: 'premium',
+                desc: 'Versatile L-shape sectional sofa. Modular design adapts to your living space with ease.',
+                material: 'Performance Fabric, Solid Wood', warranty: '5 Years', image: 'sectional,sofa,L-shape' },
+            { id: 22, name: 'Compact Study Desk', category: 'Office Desk', price: 13999, rating: 4.4, badge: 'new',
+                desc: 'Space-saving study desk with built-in shelf. Ideal for small rooms and apartments.',
+                material: 'Engineered Wood', warranty: '2 Years', image: 'small-desk,study,compact' },
+            { id: 23, name: 'Cane Back Dining Chair', category: 'Chair', price: 8999, rating: 4.5, badge: 'limited',
+                desc: 'Set of 2 cane back dining chairs. Lightweight, elegant, and breathable design.',
+                material: 'Cane, Solid Oak', warranty: '2 Years', image: 'cane-chair,dining,natural' },
+            { id: 24, name: 'Mirror Wardrobe 4-Door', category: 'Wardrobe', price: 62999, rating: 4.7, badge: 'premium',
+                desc: 'Grand 4-door wardrobe with full-length mirrors. Ample storage with drawers and hanging space.',
+                material: 'Engineered Wood, Glass Mirrors', warranty: '5 Years', image: 'wardrobe,mirror,4-door' },
+            { id: 25, name: 'Nesting Coffee Tables', category: 'Coffee Table', price: 19999, rating: 4.6, badge: 'new',
+                desc: 'Set of 3 nesting coffee tables in varying sizes. Modern design with gold accent legs.',
+                material: 'Solid Wood, Metal Legs', warranty: '3 Years', image: 'nesting-tables,coffee,gold' },
+        ];
+
+        // ==================== STATE ====================
+        let cart = JSON.parse(localStorage.getItem('sk_cart') || '[]');
+        let wishlist = JSON.parse(localStorage.getItem('sk_wishlist') || '[]');
+        let currentCategory = 'all';
+        let currentSlide = 0;
+        let slideInterval;
+
+        function saveCart() { localStorage.setItem('sk_cart', JSON.stringify(cart));
+            updateCartBadge(); }
+        function saveWishlist() { localStorage.setItem('sk_wishlist', JSON.stringify(wishlist));
+            updateWishlistBadge(); }
+
+        function getImageUrl(product) {
+            const query = product.image || product.category.toLowerCase().replace(/\s+/g, '-');
+            return `https://source.unsplash.com/600x600/?${encodeURIComponent(query)},furniture,interior&sig=${product.id}`;
+        }
+
+        // ==================== TOAST ====================
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(() => toast.classList.remove('show'), 2200);
+        }
+
+        // ==================== CART ====================
+        function addToCart(productId, e) {
+            if (e) e.stopPropagation();
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ id: productId, qty: 1 });
+            }
+            saveCart();
+            showToast('✓ Added to cart — ' + product.name);
+            animateBadge('cartBadge');
+            updateCartPanel();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            updateCartPanel();
+        }
+
+        function updateCartQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) { removeFromCart(productId); return; }
+            saveCart();
+            updateCartPanel();
+        }
+
+        function getCartTotal() {
+            return cart.reduce((sum, item) => {
+                const p = products.find(pr => pr.id === item.id);
+                return sum + (p ? p.price * item.qty : 0);
+            }, 0);
+        }
+
+        function getCartCount() { return cart.reduce((s, i) => s + i.qty, 0); }
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cartBadge');
+            const count = getCartCount();
+            badge.textContent = count || '';
+        }
+
+        function updateCartPanel() {
+            const container = document.getElementById('cartItemsContainer');
+            const footer = document.getElementById('cartFooter');
+            if (cart.length === 0) {
+                container.innerHTML =
+                    `<div class="empty-state"><i class="fa-solid fa-bag-shopping"></i><p>Your cart is empty</p><p style="font-size:0.8rem;">Browse our collection and add items</p></div>`;
+                footer.innerHTML = '';
+            } else {
+                container.innerHTML = cart.map(item => {
+                    const p = products.find(pr => pr.id === item.id);
+                    if (!p) return '';
+                    return `
+                <div class="cart-item">
+                  <div class="cart-item-img"><img src="${getImageUrl(p)}" alt="${p.name}" loading="lazy" onerror="this.src='https://source.unsplash.com/200x200/?furniture&sig=${p.id}'"></div>
+                  <div class="cart-item-info">
+                    <h4>${p.name}</h4>
+                    <div class="price">₹${p.price.toLocaleString('en-IN')}</div>
+                    <div class="cart-item-qty">
+                      <button onclick="updateCartQty(${p.id},-1)">−</button>
+                      <span>${item.qty}</span>
+                      <button onclick="updateCartQty(${p.id},1)">+</button>
+                    </div>
+                  </div>
+                  <button class="cart-item-remove" onclick="removeFromCart(${p.id})"><i class="fa-solid fa-trash-can"></i></button>
+                </div>`;
+                }).join('');
+                const total = getCartTotal();
+                footer.innerHTML = `
+              <p style="font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:8px;">Total: <span style="color:var(--gold-light);">₹${total.toLocaleString('en-IN')}</span></p>
+              <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:12px;">Free delivery on orders above ₹25,000</p>
+              <button class="btn btn-primary" style="width:100%;" onclick="openCheckout()">Proceed to Checkout</button>
+              <button class="btn btn-outline btn-sm" style="width:100%;margin-top:8px;" onclick="closeCart()">Continue Shopping</button>`;
+            }
+        }
+
+        function openCart() { document.getElementById('cartPanel').classList.add('open');
+            document.body.classList.add('modal-open');
+            updateCartPanel(); }
+
+        function closeCart() { document.getElementById('cartPanel').classList.remove('open');
+            document.body.classList.remove('modal-open'); }
+
+        // ==================== WISHLIST ====================
+        function toggleWishlist(productId, e) {
+            if (e) e.stopPropagation();
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            const idx = wishlist.indexOf(productId);
+            if (idx > -1) {
+                wishlist.splice(idx, 1);
+                showToast('Removed from wishlist');
+            } else {
+                wishlist.push(productId);
+                showToast('♥ Added to wishlist — ' + product.name);
+            }
+            saveWishlist();
+            animateBadge('wishlistBadge');
+            updateWishlistPanel();
+            renderProducts();
+        }
+
+        function isLiked(productId) { return wishlist.includes(productId); }
+
+        function getWishlistCount() { return wishlist.length; }
+
+        function updateWishlistBadge() {
+            const badge = document.getElementById('wishlistBadge');
+            badge.textContent = getWishlistCount() || '';
+        }
+
+        function updateWishlistPanel() {
+            const container = document.getElementById('wishlistItemsContainer');
+            if (wishlist.length === 0) {
+                container.innerHTML =
+                    `<div class="empty-state"><i class="fa-regular fa-heart"></i><p>Your wishlist is empty</p><p style="font-size:0.8rem;">Save items you love for later</p></div>`;
+            } else {
+                container.innerHTML = wishlist.map(id => {
+                    const p = products.find(pr => pr.id === id);
+                    if (!p) return '';
+                    return `
+                <div class="cart-item">
+                  <div class="cart-item-img"><img src="${getImageUrl(p)}" alt="${p.name}" loading="lazy" onerror="this.src='https://source.unsplash.com/200x200/?furniture&sig=${p.id}'"></div>
+                  <div class="cart-item-info">
+                    <h4>${p.name}</h4>
+                    <div class="price">₹${p.price.toLocaleString('en-IN')}</div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:6px;">
+                    <button class="btn btn-sm btn-primary" style="font-size:0.7rem;padding:6px 10px;" onclick="addToCart(${p.id});closeWishlist();">Add to Cart</button>
+                    <button class="cart-item-remove" onclick="toggleWishlist(${p.id})"><i class="fa-solid fa-trash-can"></i></button>
+                  </div>
+                </div>`;
+                }).join('');
+            }
+        }
+
+        function openWishlist() { document.getElementById('wishlistPanel').classList.add('open');
+            document.body.classList.add('modal-open');
+            updateWishlistPanel(); }
+
+        function closeWishlist() { document.getElementById('wishlistPanel').classList.remove('open');
+            document.body.classList.remove('modal-open'); }
+
+        function animateBadge(badgeId) {
+            const badge = document.getElementById(badgeId);
+            badge.classList.add('pop');
+            setTimeout(() => badge.classList.remove('pop'), 400);
+        }
+
+        // ==================== PRODUCT DETAIL MODAL ====================
+        function openProductDetail(productId) {
+            const p = products.find(pr => pr.id === productId);
+            if (!p) return;
+            const modal = document.getElementById('productModal');
+            const content = document.getElementById('productModalContent');
+            const badgeMap = { best: 'Best Seller', new: 'New Arrival', limited: 'Limited Offer', premium: 'Premium Choice' };
+            content.innerHTML = `
+            <button class="modal-close" onclick="closeProductDetail()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-product-layout">
+              <div class="modal-product-image"><img src="${getImageUrl(p)}" alt="${p.name}" loading="lazy" onerror="this.src='https://source.unsplash.com/600x600/?furniture&sig=${p.id}'"></div>
+              <div class="modal-product-info">
+                <span style="font-size:0.7rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;">${p.category}</span>
+                <span style="margin-left:10px;font-size:0.68rem;padding:4px 10px;border-radius:50px;background:var(--bg-surface);color:var(--gold-light);border:1px solid var(--border-gold);">${badgeMap[p.badge]||'Premium'}</span>
+                <h3>${p.name}</h3>
+                <div class="price">₹${p.price.toLocaleString('en-IN')}</div>
+                <div class="rating">${'★'.repeat(Math.floor(p.rating))}${p.rating%1>=0.5?'★':''} <span style="color:var(--text-muted);">${p.rating}/5</span></div>
+                <p class="desc">${p.desc}</p>
+                <div class="modal-meta">
+                  <div><strong>Material</strong>${p.material}</div>
+                  <div><strong>Warranty</strong>${p.warranty}</div>
+                  <div><strong>Delivery</strong>Free across India</div>
+                  <div><strong>Care</strong>Wipe with dry cloth</div>
+                </div>
+                <div class="modal-actions">
+                  <button class="btn btn-add-cart" onclick="addToCart(${p.id})"><i class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                  <button class="btn btn-primary" onclick="buyNow(${p.id})"><i class="fa-brands fa-whatsapp"></i> Buy Now</button>
+                  <button class="btn btn-icon btn-outline" onclick="toggleWishlist(${p.id})" style="width:44px;height:44px;min-width:44px;">
+                    <i class="fa-${isLiked(p.id)?'solid':'regular'} fa-heart" style="color:${isLiked(p.id)?'#e74c3c':'inherit'}"></i>
+                  </button>
+                </div>
+              </div>
+            </div>`;
+            modal.classList.add('open');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeProductDetail() {
+            document.getElementById('productModal').classList.remove('open');
+            document.body.classList.remove('modal-open');
+        }
+
+        // ==================== BUY NOW WHATSAPP ====================
+        function buyNow(productId, e) {
+            if (e) e.stopPropagation();
+            const p = products.find(pr => pr.id === productId);
+            if (!p) return;
+            const msg = `Hello, I want to buy *${p.name}* priced at *₹${p.price.toLocaleString('en-IN')}*. Please share details.`;
+            const url = `https://wa.me/919818216443?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank');
+        }
+
+        // ==================== CHECKOUT ====================
+        function openCheckout() {
+            closeCart();
+            const total = getCartTotal();
+            const modal = document.getElementById('checkoutModal');
+            const content = document.getElementById('checkoutModalContent');
+            content.innerHTML = `
+            <button class="modal-close" onclick="closeCheckout()"><i class="fa-solid fa-xmark"></i></button>
+            <h3 style="font-family:var(--font-display);font-size:1.6rem;color:var(--white);margin-bottom:4px;">Checkout</h3>
+            <p style="color:var(--text-muted);margin-bottom:20px;">Complete your order — we'll handle the rest</p>
+            <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:16px;margin-bottom:20px;border:1px solid var(--border-subtle);">
+              <strong style="color:var(--white);">Order Summary:</strong> ${cart.length} item(s) — <span style="color:var(--gold-light);font-weight:700;">₹${total.toLocaleString('en-IN')}</span>
+              <br><small style="color:var(--text-muted);">Free delivery | COD available</small>
+            </div>
+            <form class="checkout-form" onsubmit="handlePlaceOrder(event)">
+              <input type="text" placeholder="Full Name *" required>
+              <input type="tel" placeholder="Mobile Number *" required>
+              <textarea placeholder="Full Address *" required rows="2"></textarea>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <input type="text" placeholder="City *" required>
+                <input type="text" placeholder="Pincode *" required>
+              </div>
+              <select required>
+                <option value="">Payment Method</option>
+                <option value="cod">Cash on Delivery (COD)</option>
+                <option value="online">Online Payment (Coming Soon)</option>
+              </select>
+              <button type="submit" class="btn btn-primary" style="width:100%;font-size:1rem;">Place Order via WhatsApp</button>
+            </form>`;
+            modal.classList.add('open');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutModal').classList.remove('open');
+            document.body.classList.remove('modal-open');
+        }
+
+        function handlePlaceOrder(e) {
+            e.preventDefault();
+            const form = e.target;
+            const name = form.querySelector('input[placeholder="Full Name *"]').value;
+            const mobile = form.querySelector('input[placeholder="Mobile Number *"]').value;
+            const address = form.querySelector('textarea').value;
+            const city = form.querySelector('input[placeholder="City *"]').value;
+            const pincode = form.querySelector('input[placeholder="Pincode *"]').value;
+            const total = getCartTotal();
+            const items = cart.map(item => {
+                const p = products.find(pr => pr.id === item.id);
+                return p ? `${p.name} (x${item.qty}) — ₹${(p.price*item.qty).toLocaleString('en-IN')}` : '';
+            }).filter(Boolean).join('\n');
+            const msg =
+                `*New Order — SK Furniture*\n\n*Customer:* ${name}\n*Mobile:* ${mobile}\n*Address:* ${address}, ${city}, ${pincode}\n\n*Items:*\n${items}\n\n*Total:* ₹${total.toLocaleString('en-IN')}\n\nPlease confirm the order.`;
+            const url = `https://wa.me/919818216443?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank');
+            cart = [];
+            saveCart();
+            updateCartPanel();
+            closeCheckout();
+            showToast('Order sent via WhatsApp!');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const name = form.querySelector('input[placeholder="Your Name"]').value;
+            const mobile = form.querySelector('input[placeholder="Mobile Number"]').value;
+            const msg = form.querySelector('textarea').value;
+            const waMsg =
+                `*New Inquiry — SK Furniture*\n\n*Name:* ${name}\n*Mobile:* ${mobile}\n*Message:* ${msg}\n\nPlease respond at your earliest convenience.`;
+            const url = `https://wa.me/919818216443?text=${encodeURIComponent(waMsg)}`;
+            window.open(url, '_blank');
+            form.reset();
+            showToast('Message sent successfully!');
+        }
+
+        // ==================== RENDER PRODUCTS ====================
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const sortVal = document.getElementById('sortSelect').value;
+            const priceFilter = document.getElementById('priceFilter').value;
+            let filtered = products.filter(p => {
+                if (currentCategory !== 'all' && p.category !== currentCategory) return false;
+                if (searchTerm && !p.name.toLowerCase().includes(searchTerm) && !p.category.toLowerCase()
+                    .includes(searchTerm)) return false;
+                if (priceFilter !== 'all') {
+                    const [min, max] = priceFilter.split('-').map(Number);
+                    if (p.price < min || p.price > max) return false;
+                }
+                return true;
+            });
+            if (sortVal === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+            if (sortVal === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+            if (sortVal === 'rating') filtered.sort((a, b) => b.rating - a.rating);
+            if (filtered.length === 0) {
+                grid.innerHTML =
+                    '<div class="empty-state" style="grid-column:1/-1;padding:60px;"><i class="fa-solid fa-magnifying-glass"></i><p>No products found</p><p style="font-size:0.8rem;">Try adjusting your filters</p></div>';
+            } else {
+                grid.innerHTML = filtered.map(p => {
+                    const badgeMap = { best: 'badge-best', new: 'badge-new', limited: 'badge-limited',
+                        premium: 'badge-premium' };
+                    const badgeText = { best: 'Best Seller', new: 'New', limited: 'Limited', premium: 'Premium' };
+                    return `
+                <div class="product-card" onclick="openProductDetail(${p.id})">
+                  <div class="product-card-image">
+                    <img src="${getImageUrl(p)}" alt="${p.name}" loading="lazy" onerror="this.src='https://source.unsplash.com/600x600/?furniture&sig=${p.id}'">
+                    <span class="product-badge ${badgeMap[p.badge]||'badge-best'}">${badgeText[p.badge]||'Premium'}</span>
+                    <button class="product-wishlist-btn ${isLiked(p.id)?'liked':''}" onclick="toggleWishlist(${p.id},event)" aria-label="Wishlist">
+                      <i class="fa-${isLiked(p.id)?'solid':'regular'} fa-heart"></i>
+                    </button>
+                  </div>
+                  <div class="product-card-body">
+                    <div class="product-card-category">${p.category}</div>
+                    <div class="product-card-name">${p.name}</div>
+                    <div class="product-card-price">₹${p.price.toLocaleString('en-IN')}</div>
+                    <div class="product-card-rating">${'★'.repeat(Math.floor(p.rating))}${p.rating%1>=0.5?'★':''} <span>${p.rating}</span></div>
+                    <div class="product-card-actions">
+                      <button class="btn btn-add-cart btn-sm" onclick="addToCart(${p.id},event)"><i class="fa-solid fa-bag-shopping"></i> Cart</button>
+                      <button class="btn btn-buy-now btn-sm" onclick="buyNow(${p.id},event)"><i class="fa-brands fa-whatsapp"></i> Buy</button>
+                    </div>
+                  </div>
+                </div>`;
+                }).join('');
+            }
+        }
+
+        // ==================== INIT ====================
+        function init() {
+            updateCartBadge();
+            updateWishlistBadge();
+            updateCartPanel();
+            updateWishlistPanel();
+            renderProducts();
+            // Hero slider
+            const slides = document.querySelectorAll('.hero-slide');
+            const indicators = document.querySelectorAll('.hero-indicator');
+            function goToSlide(n) {
+                slides.forEach(s => s.classList.remove('active'));
+                indicators.forEach(i => i.classList.remove('active'));
+                currentSlide = n;
+                slides[currentSlide].classList.add('active');
+                indicators[currentSlide].classList.add('active');
+            }
+            indicators.forEach(ind => {
+                ind.addEventListener('click', () => {
+                    const n = parseInt(ind.dataset.slide);
+                    goToSlide(n);
+                    resetSlideInterval();
+                });
+            });
+            function nextSlide() { goToSlide((currentSlide + 1) % slides.length); }
+
+            function resetSlideInterval() { clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5500); }
+            slideInterval = setInterval(nextSlide, 5500);
+            // Category chips
+            document.querySelectorAll('#categoryStrip .category-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    document.querySelectorAll('#categoryStrip .category-chip').forEach(c => c
+                        .classList.remove('active'));
+                    chip.classList.add('active');
+                    currentCategory = chip.dataset.cat;
+                    renderProducts();
+                });
+            });
+            // Scroll reveal
+            const revealEls = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            revealEls.forEach(el => observer.observe(el));
+            // Navbar scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 60) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+            });
+            // Hamburger
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('open');
+                navLinks.classList.toggle('open');
+            });
+            document.querySelectorAll('#navLinks a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('open');
+                    navLinks.classList.remove('open');
+                    document.querySelectorAll('#navLinks a').forEach(l => l.classList.remove(
+                        'active'));
+                    link.classList.add('active');
+                });
+            });
+            // Close modals on overlay click
+            document.getElementById('productModal').addEventListener('click', function(e) { if (e.target === this)
+                    closeProductDetail(); });
+            document.getElementById('checkoutModal').addEventListener('click', function(e) { if (e.target === this)
+                    closeCheckout(); });
+            // Keyboard escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeProductDetail();
+                    closeCheckout();
+                    closeCart();
+                    closeWishlist();
+                }
+            });
+            // Loading screen
+            setTimeout(() => {
+                document.getElementById('loading-screen').classList.add('hidden');
+            }, 1200);
+            // Initial reveal trigger
+            setTimeout(() => {
+                revealEls.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) el.classList.add('visible');
+                });
+            }, 300);
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+
+        // ==================== SERVICE WORKER REGISTRATION (OPTIONAL PWA) ====================
+        // Not implementing full PWA here to keep it simple, but the structure supports it.
+        console.log('%c SK Furniture %c by Ghanshay Roy %c| %cPremium Luxury Furniture',
+            'color:#c9a96e;font-size:1.2rem;font-weight:bold;',
+            'color:#fff;',
+            'color:#888;',
+            'color:#c9a96e;');
+    </script>
+</body>
+</html>
